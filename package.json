@@ -1,0 +1,19 @@
+{
+  "name": "myflix-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atamQ/myFlix-client.git"
+  },
+  "author": "MQ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atamQ/myFlix-client/issues"
+  },
+  "homepage": "https://github.com/atamQ/myFlix-client#readme"
+}
