@@ -25419,7 +25419,7 @@ class MainView extends _reactDefault.default.Component {
         };
     }
     componentDidMount() {
-        _axiosDefault.default.get('https://matt-movie-site.herokuapp.com/movies').then((response)=>{
+        _axiosDefault.default.get('https://guarded-mesa-77632.herokuapp.com/movies').then((response)=>{
             this.setState({
                 movies: response.data
             });
@@ -25442,7 +25442,7 @@ class MainView extends _reactDefault.default.Component {
                 lineNumber: 44
             },
             __self: this,
-            children: "The list is empty"
+            children: "The list is empty!"
         }));
         return(/* <div className="main-view">
                  {movies.map(movie => <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => { this.setSelectedMovie(movie) }} />)}
@@ -25500,7 +25500,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 class MovieCard extends _reactDefault.default.Component {
     render() {
-        const { movie , onMovieClick  } = this.props;
+        const { movie , onMovieClick  } = this.props; //movieData?
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
             className: "movie-card",
             onClick: ()=>{

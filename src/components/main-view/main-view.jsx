@@ -18,7 +18,7 @@ export class MainView extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('https://matt-movie-site.herokuapp.com/movies')
+        axios.get('https://guarded-mesa-77632.herokuapp.com/movies')
             .then(response => {
                 this.setState({
                     movies: response.data
@@ -41,7 +41,7 @@ export class MainView extends React.Component {
         //if (selectedMovie) return <MovieView movie={selectedMovie} />
 
         if (movies.length === 0)
-            return <div className="main-view">The list is empty</div>
+            return <div className="main-view">The list is empty!</div>
 
         return (
             /* <div className="main-view">
@@ -51,7 +51,7 @@ export class MainView extends React.Component {
                 {selectedMovie
                     ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
                     : movies.map(movie => (
-                        <MovieCard key={movie._id} movie={movie} //onMovieClick={(movie) => { this.setSelectedMovie(movie) }} />
+                        <MovieCard key={movie._id} movie={movie} //onMovieClick={(movie) => { this.setSelectedMovie(movie) }}  || movieData = movie ?/>
                             onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
                     ))
                 }
