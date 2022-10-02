@@ -28,9 +28,9 @@ mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnified
 //mongodb+srv://user-matt:LOT2272dm@myflixdb.7b6ot.mongodb.net/myFlixDB?retryWrites=true&w=majority
 
 //MAIN PAGE
-app.get('/', (req, res) => {
-  res.send("Welcome to the main page");
-});
+//app.get('/', (req, res) => {
+//  res.send("Welcome to the main page");
+//});
 
 //GET LIST OF MOVIES WITH DATA
 app.get('/movies', (req, res) => {
@@ -43,7 +43,7 @@ app.get('/movies', (req, res) => {
       res.status(500).send('Error: ' + err);
     });
 });
-
+/*
 //GET MOVIE BY TITLE
 app.get('/movies/:title', (req, res) => {
   Movies.findOne({ Title: req.params.title })
