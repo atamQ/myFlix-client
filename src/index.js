@@ -43,7 +43,7 @@ app.get('/movies', (req, res) => {
       res.status(500).send('Error: ' + err);
     });
 });
-/*
+
 //GET MOVIE BY TITLE
 app.get('/movies/:title', (req, res) => {
   Movies.findOne({ Title: req.params.title })
