@@ -8,20 +8,20 @@ const express = require('express'),
 const Movies = Models.Movie;
 const Users = Models.User;
 
-const app = express(); //APP DEFINITION
+const apps = express(); //APP DEFINITION
 const cors = require('cors');
 
 const { check, validationResult } = require('express-validator');
 
-app.use(cors()); //THIS CURRENTLY ALLOWS ALL ORIGINS
+apps.use(cors()); //THIS CURRENTLY ALLOWS ALL ORIGINS
 
-let auth = require('./auth')(app); //'app' PORTION ENSURES EXPRESS IS AVAILABLE IN AUTH.JS, MUST BE AFTER bodyParser lines
+let auth = require('./auth')(apps); //'app' PORTION ENSURES EXPRESS IS AVAILABLE IN AUTH.JS, MUST BE AFTER bodyParser lines
 
 const passport = require('passport'); //MUST BE AFTER ./auth LINE
 require('./passport');  //MUST BE AFTER ./auth LINE
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+apps.use(bodyParser.json());
+apps.use(bodyParser.urlencoded({ extended: true }));
 
 //mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -33,7 +33,7 @@ mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnified
 //});
 
 //GET LIST OF MOVIES WITH DATA
-app.get('/movies', (req, res) => {
+apps.get('/movies', (req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
@@ -45,7 +45,7 @@ app.get('/movies', (req, res) => {
 });
 
 //GET MOVIE BY TITLE
-app.get('/movies/:title', (req, res) => {
+apps.get('/movies/:title', (req, res) => {
   Movies.findOne({ Title: req.params.title })
     .then((title) => {
       res.json(title);
@@ -57,7 +57,7 @@ app.get('/movies/:title', (req, res) => {
 });
 
 //GET BY GENRE -- POSTMAN IS CASE SENSITIVE -- Thriller, Drama, Documentary, Biography, Action
-app.get('/genres/:name', (req, res) => {
+apps.get('/genres/:name', (req, res) => {
   Genres.findOne({ Name: req.params.name })
     .then((name) => {
       res.json(name);
@@ -69,7 +69,7 @@ app.get('/genres/:name', (req, res) => {
 });
 
 //GET BY DIRECTOR NAME
-app.get('/directors/:name', (req, res) => {
+apps.get('/directors/:name', (req, res) => {
   Directors.findOne({ Name: req.params.name })
     .then((name) => {
       res.json(name);
@@ -81,7 +81,7 @@ app.get('/directors/:name', (req, res) => {
 });
 
 //GET ALL USERS
-app.get('/users', (req, res) => {
+apps.get('/users', (req, res) => {
   Users.find()
     .then((users) => {
       res.status(201).json(users);
@@ -93,7 +93,7 @@ app.get('/users', (req, res) => {
 })
 
 //GET A USER BY USERNAME
-app.get('/users/:Username', (req, res) => {
+apps.get('/users/:Username', (req, res) => {
   Users.findOne({ Username: req.params.Username })
     .then((user) => {
       res.json(user);
@@ -105,7 +105,7 @@ app.get('/users/:Username', (req, res) => {
 });
 
 //ADD/REGISTER A USER
-app.post('/users',
+apps.post('/users',
   [
     check('Username', 'Username is required').isLength({ min: 5 }),
     check('Username', 'Username contains non alphanumeric characters - not allowed').isAlphanumeric(),
@@ -149,7 +149,7 @@ app.post('/users',
 
 
 //UPDATE A USERS INFO
-app.put('/users/:Username', (req, res) => {
+apps.put('/users/:Username', (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $set:
     {
@@ -171,7 +171,7 @@ app.put('/users/:Username', (req, res) => {
 });
 
 //ADD A FAVORITE MOVIE TO USERS FAVORITES
-app.post('/users/:Username/movies/:MovieID', (req, res) => {
+apps.post('/users/:Username/movies/:MovieID', (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $push: { FavoriteMovies: req.params.MovieID }
   },
@@ -187,7 +187,7 @@ app.post('/users/:Username/movies/:MovieID', (req, res) => {
 });
 
 //DELETE A USER BY USERNAME
-app.delete('/users/:Username', (req, res) => {
+apps.delete('/users/:Username', (req, res) => {
   Users.findOneAndRemove({ Username: req.params.Username })
     .then((user) => {
       if (!user) {
@@ -204,7 +204,7 @@ app.delete('/users/:Username', (req, res) => {
 
 
 const port = process.env.PORT || 8080;
-app.listen(port, '0.0.0.0', () => {
+apps.listen(port, '0.0.0.0', () => {
   console.log('Listening on Port ' + port);
 });
 
