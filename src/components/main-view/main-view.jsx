@@ -10,9 +10,9 @@ export class MainView extends React.Component {
         super();
         this.state = {
             movies: [
-                // { _id: 1, Title: 'Inception', Description: 'description1', ImagePath: 'x.jpg' },
-                //{ _id: 2, Title: 'The Shawshank Redemption', Description: 'description2', ImagePath: 'x.jpg' },
-                //{ _id: 3, Title: 'Gladiator', Description: 'description3', ImagePath: 'x.jpg' }
+                { _id: 1, Title: 'Inception', Description: 'description1', ImagePath: 'x.jpg' },
+                { _id: 2, Title: 'The Shawshank Redemption', Description: 'description2', ImagePath: 'x.jpg' },
+                { _id: 3, Title: 'Gladiator', Description: 'description3', ImagePath: 'x.jpg' }
             ], selectedMovie: null
         }
     }
